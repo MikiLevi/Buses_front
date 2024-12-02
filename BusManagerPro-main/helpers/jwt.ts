@@ -18,6 +18,7 @@ const generateAuthToken = (user: { _id: any }): string => {
   });
 };
 
+
 // Verify user
 const verifyUser = (req: Request, res: Response, next: NextFunction) => {
   // Check if cookies exist

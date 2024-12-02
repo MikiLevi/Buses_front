@@ -10,7 +10,7 @@ import Line from "./models/line"; // המודל של הקו
  * @returns A promise that resolves to the user data array with encrypted passwords.
  */
 async function encryptPasswords(userData: any[]) {
-  return Promise.all(
+  return Promise.all( 
     userData.map(async (user) => {
       if (user.password) {
         // Hash the password using bcrypt

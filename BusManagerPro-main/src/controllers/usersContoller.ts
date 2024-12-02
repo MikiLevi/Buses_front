@@ -7,7 +7,7 @@ import {
   deleteUser,
 } from "../services/usersService";
 import { handleError } from "../../utils/ErrorHandle";
-
+ 
 const router: IRouter = express.Router();
 
 router.get("/", async (req: Request, res: Response): Promise<void> => {
