@@ -1,12 +1,16 @@
-import { Link, NavLink } from "react-router-dom";
-import UsersPage from "../../pages/UsersPage";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
     <div>
       <NavLink to={"/manager"}>Manager</NavLink>
       <p />
-      <NavLink to={"/"}> Home</NavLink>
+      <NavLink to={"/"}>Home</NavLink>
+      <p />
+      <NavLink to={"/register"}>Register</NavLink>
+      <p />
+      <NavLink to={"/chat"}>Chat</NavLink>
+      <p />
     </div>
   );
 }

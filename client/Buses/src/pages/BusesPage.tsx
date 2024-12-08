@@ -36,6 +36,10 @@ export default function BusesPage() {
                 <b>Status: </b>
                 {Bus.status}
               </p>
+              <p>
+                <b>DriverID: </b>
+                {Bus.driverID}
+              </p>
               <p></p>
               <br />
             </div>

@@ -11,18 +11,14 @@ interface AuthContextType {
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
-
 export default function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<IUser | null>(
-  null
-  );
-
-  const { POST } = UseFetch("http://localhost:7979/auth/login");
   
+  const [user, setUser] = useState<IUser | null>(null);
+  const { POST } = UseFetch("http://localhost:7979/auth/login");
+
   const login = async (user: UserDto): Promise<boolean> => {
     try {
       const res = await POST(user);
-
       if (!res || res.foundUser) {
         console.error("Invalid response:", res);
       }

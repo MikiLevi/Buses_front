@@ -15,7 +15,7 @@ const getAllLines = async () => {
 // לקבל נתיב לפי ID
 const getLineById = async (lineId: string) => {
   try {
-    const line = await Line.findById(lineId);
+    const line = await Line.findById(lineId).populate("lines");
     if (!line) {
       throw new Error("Line not found");
     }

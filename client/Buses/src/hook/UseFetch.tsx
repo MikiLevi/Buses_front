@@ -11,8 +11,24 @@ export default function UseFetch<T>(url: string): any {
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(`HTTP error! ${errorData.error.message}`);
-      }      
-      
+      }
+
+      const result = await response.json();
+      setData(result);
+    } catch (error: unknown) {
+      setError((error as Error).message || "An unknown error occurred.");
+    }
+  };
+
+  //   --------------GetByCall method--------------
+  const GetByCall = async (page: number, limit: number) => {
+    try {
+      const response = await fetch(`${url}`);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(`HTTP error! ${errorData.error.message}`);
+      }
+
       const result = await response.json();
       setData(result);
     } catch (error: unknown) {
@@ -21,7 +37,7 @@ export default function UseFetch<T>(url: string): any {
   };
 
   //   --------------POST method--------------
-  const POST = async ( body: object) => {
+  const POST = async (body?: object) => {
     try {
       const response = await fetch(`${url}`, {
         method: "POST",
@@ -33,7 +49,6 @@ export default function UseFetch<T>(url: string): any {
         const errorData = await response.json();
         throw new Error(errorData.error?.message || "Request failed");
       }
-
       const result = await response.json();
       setData(result);
       return result;
@@ -43,5 +58,5 @@ export default function UseFetch<T>(url: string): any {
     }
   };
 
-  return { GET, POST ,data};
+  return { data, error, GET, GetByCall, POST };
 }

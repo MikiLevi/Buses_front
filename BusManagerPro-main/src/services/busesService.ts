@@ -15,7 +15,9 @@ const getAllBuses = async () => {
 // לקבל אוטובוס לפי ID
 const getBusById = async (busId: string) => {
   try {
-    const bus = await Bus.findById(busId);
+    const bus = await Bus.findById(busId)
+      .populate("driverID")
+      .populate("routeID");
     if (!bus) {
       throw new Error("Bus not found");
     }

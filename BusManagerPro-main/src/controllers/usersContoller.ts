@@ -3,16 +3,29 @@ import {
   addUser,
   getAllUsers,
   getUserById,
+  geyUserByCall,
   updateUser,
   deleteUser,
 } from "../services/usersService";
-import { handleError } from "../../utils/ErrorHandle";
- 
+import { handleBadRequest, handleError } from "../../utils/ErrorHandle";
+
 const router: IRouter = express.Router();
 
 router.get("/", async (req: Request, res: Response): Promise<void> => {
   try {
     const users = await getAllUsers();
+    res.json(users);
+  } catch (error: any) {
+    handleError(res, error.status || 404, error.message);
+  }
+});
+
+router.get("/call", async (req: Request, res: Response): Promise<void> => {
+  try {
+    const page = Number(req.query.page as string);
+    const limit = Number(req.query.page as string);
+
+    const users = await geyUserByCall(page, limit);
     res.json(users);
   } catch (error: any) {
     handleError(res, error.status || 404, error.message);

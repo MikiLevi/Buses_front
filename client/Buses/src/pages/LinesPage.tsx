@@ -32,6 +32,18 @@ export default function LinesPage() {
                 <p>
                   <b>Stations: </b> {line.stations}
                 </p>
+                <p>
+                  <b>Departure Time:</b>
+                  {line.schedule.map((time) => time.departureTime)}
+                </p>
+                <p>
+                  <b>Arrival Time: </b>
+                  {line.schedule.map((time) => time.arrivalTime)}
+                </p>
+                <p>
+                  <b>Station: </b>
+                  {line.schedule.map((time) => time.station)}
+                </p>
               </p>
               <br />
             </div>

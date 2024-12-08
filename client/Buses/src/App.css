@@ -43,6 +43,7 @@ button {
   border: none;
   border-radius: 5px;
   padding: 9px;
+  margin: 5px;
   font-size: 1.1rem;
   cursor: pointer;
   grid-column: span 2;
@@ -52,3 +53,4 @@ button:hover {
   background-color: #04f7f7;
   color: white;
 }
+

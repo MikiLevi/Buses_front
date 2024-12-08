@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import User from "./models/user"; // המודל של המשתמש
 import Bus from "./models/bus"; // המודל של האוטובוס
 import Line from "./models/line"; // המודל של הקו
+import Room from "./models/room"; // המודל של החדרים
 
 /**
  * Encrypts passwords for all users in the provided data array.
@@ -10,7 +11,7 @@ import Line from "./models/line"; // המודל של הקו
  * @returns A promise that resolves to the user data array with encrypted passwords.
  */
 async function encryptPasswords(userData: any[]) {
-  return Promise.all( 
+  return Promise.all(
     userData.map(async (user) => {
       if (user.password) {
         // Hash the password using bcrypt
@@ -41,6 +42,7 @@ async function loadInitialData() {
 
   const busData = JSON.parse(fs.readFileSync("./data/Buses.json", "utf8"));
   const lineData = JSON.parse(fs.readFileSync("./data/Lines.json", "utf8"));
+  const roomData = JSON.parse(fs.readFileSync("./data/Room.json", "utf8"));
 
   if ((await Bus.countDocuments()) === 0) {
     await Bus.insertMany(busData);
@@ -56,6 +58,15 @@ async function loadInitialData() {
   } else {
     console.log("Lines already exist in the database.");
   }
+
+  // Check if rooms exist and insert if necessary
+  if ((await Room.countDocuments()) === 0) {
+    await Room.insertMany(roomData);
+    console.log("Initial room have been added to the database.");
+  } else {
+    console.log("Room already exist in the database.");
+  }
 }
 
 export default loadInitialData;
+ 
